@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:news_example_app/components/header.dart';
 
 class ProfileHeader extends StatelessWidget {
   const ProfileHeader({
@@ -14,22 +15,7 @@ class ProfileHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: <Widget>[
-        Container(
-          height: 225,
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              colors: [
-                Theme.of(context).primaryColor,
-                Theme.of(context).accentColor,
-              ],
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-            ),
-            borderRadius: BorderRadius.only(
-              bottomLeft: Radius.elliptical(60.0, 30.0),
-              bottomRight: Radius.elliptical(60.0, 30.0),
-            ),
-          ),
+        Header(
           child: Column(
             children: <Widget>[
               SizedBox(height: 20),
