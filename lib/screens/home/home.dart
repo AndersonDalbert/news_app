@@ -21,20 +21,18 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          title: Text("Breaking News"),
-          centerTitle: true,
-        ),
-        body: _navChildren[_currentNavIndex],
-        bottomNavigationBar: BottomNavigationBar(
-          currentIndex: _currentNavIndex,
-          onTap: onTabTapped,
-          selectedItemColor: Colors.white,
-          unselectedItemColor: Colors.white70,
-          backgroundColor: Theme.of(context).primaryColor,
-          items: _buildNavItems(),
-        ));
+    return SafeArea(
+      child: Scaffold(
+          body: _navChildren[_currentNavIndex],
+          bottomNavigationBar: BottomNavigationBar(
+            currentIndex: _currentNavIndex,
+            onTap: onTabTapped,
+            selectedItemColor: Colors.white,
+            unselectedItemColor: Colors.white70,
+            backgroundColor: Theme.of(context).primaryColor,
+            items: _buildNavItems(),
+          )),
+    );
   }
 
   void onTabTapped(int navIndex) {

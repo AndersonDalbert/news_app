@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:news_example_app/components/header.dart';
 import 'package:news_example_app/components/loading.dart';
 import 'package:news_example_app/model/post.dart';
 
@@ -91,7 +92,30 @@ class _FeedState extends State<Feed> {
 
   @override
   Widget build(BuildContext context) {
-    return _isFetching ? Scaffold(body: Loading()) : _buildScrollView();
+    return _isFetching
+        ? Scaffold(body: Loading())
+        : ListView(
+            children: <Widget>[
+              Header(
+                child: Center(
+                    child: Text(
+                  "Notícias",
+                  style: Theme.of(context)
+                      .textTheme
+                      .headline1
+                      .copyWith(color: Colors.white, fontSize: 50),
+                )),
+              ),
+              SizedBox(height: 20),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text("Últimas notícias",
+                    style: Theme.of(context).textTheme.headline2),
+              ),
+              SizedBox(height: 8),
+              _buildScrollView(),
+            ],
+          );
   }
 
   Widget _buildScrollView() {
@@ -100,6 +124,7 @@ class _FeedState extends State<Feed> {
       child: Scrollbar(
           controller: _controller,
           child: ListView.builder(
+            shrinkWrap: true,
             controller: _controller,
             itemCount: _postList.length,
             itemBuilder: (context, index) => _buildFeedElement(index),
